@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MMProgressHUD/MMProgressHUD.h>
+
 #import "RottenTomatoesInterface.h"
 
 @interface TopMoviesViewController : UITableViewController
 
 @property (nonatomic, retain) NSArray *boxOfficeList;
 @property (nonatomic) RottenTomatoesInterface *rti;
+@property (nonatomic) BOOL boxOfficeListLoaded;
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "TopMoviesViewController.h"
-#import "RottenTomatoesInterface.h"
 
 @interface TopMoviesViewController ()
 
@@ -38,28 +37,30 @@
 }
 
 - (void) onBoxOfficeListLoaded :(AFHTTPRequestOperation *)op :(id)data {
-    //TODO: loading spinner
-    
+    self.boxOfficeListLoaded = true;
     self.boxOfficeList = [data objectForKey:@"movies"];
+    
+    void (^updateUI)(void) = ^{
+        // make sure error box is not showing
+        self.tableView.tableHeaderView = nil;
+        
+        [MMProgressHUD dismiss];
+        [[self tableView] reloadData];
+    };
     
     // update table view
     if([NSThread isMainThread]) {
-        // make sure error box is not showing
-        self.tableView.tableHeaderView = nil;
-        [[self tableView] reloadData];
+        updateUI();
     }
     else {
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            // make sure error box is not showing
-            self.tableView.tableHeaderView = nil;
-            [[self tableView] reloadData];
-        });
+        dispatch_sync(dispatch_get_main_queue(), updateUI);
     }
 }
 
 - (void) onBoxOfficeListLoadError :(AFHTTPRequestOperation *)op :(NSError *)err {
     NSLog(@"%@", [err localizedDescription]);
     
+    [MMProgressHUD dismiss];
     self.tableView.tableHeaderView = [self makeErrorBox:@"Network Error!"];
 }
 
@@ -67,14 +68,25 @@
     [super viewDidLoad];
     
     // async load box office list
+    self.boxOfficeListLoaded = false;
     self.rti = [[RottenTomatoesInterface alloc] init];
     RequestCallback successCallback = ^(AFHTTPRequestOperation *op, id data) {
-        [self onBoxOfficeListLoaded: op :data];
+        [self onBoxOfficeListLoaded:op :data];
     };
     ErrorCallback failureCallback = ^(AFHTTPRequestOperation *op, NSError *error) {
         [self onBoxOfficeListLoadError:op :error];
     };
     [self.rti getBoxOfficeList:10 :successCallback :failureCallback];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:true];
+    
+    // show loading if box office list has not been loaded yet
+    if(!self.boxOfficeListLoaded){
+        [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleBalloon];
+        [MMProgressHUD showWithTitle:@"Loading" status:@"Getting Box Office List"];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -104,7 +116,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    cell.textLabel.text = [self.boxOfficeList objectAtIndex:indexPath.row];
+    cell.textLabel.text = [self.boxOfficeList objectAtIndex:indexPath.row][@"title"];
     
     return cell;
 }
