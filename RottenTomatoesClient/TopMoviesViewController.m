@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Kevin Ku. All rights reserved.
 //
 
+#import <UIImageView+AFNetworking.h>
+
+#import "BoxOfficeTableViewCell.h"
 #import "TopMoviesViewController.h"
 
 @interface TopMoviesViewController ()
@@ -36,7 +39,20 @@
     return errorBox;
 }
 
-- (void) onBoxOfficeListLoaded :(AFHTTPRequestOperation *)op :(id)data {
+- (void)loadBoxOfficeList {
+    // async load box office list
+    self.boxOfficeListLoaded = false;
+    self.rti = [[RottenTomatoesInterface alloc] init];
+    RequestCallback successCallback = ^(AFHTTPRequestOperation *op, id data) {
+        [self onBoxOfficeListLoaded:op :data];
+    };
+    ErrorCallback failureCallback = ^(AFHTTPRequestOperation *op, NSError *error) {
+        [self onBoxOfficeListLoadError:op :error];
+    };
+    [self.rti getBoxOfficeList:10 :successCallback :failureCallback];
+}
+
+- (void)onBoxOfficeListLoaded:(AFHTTPRequestOperation *)op :(id)data {
     self.boxOfficeListLoaded = true;
     self.boxOfficeList = [data objectForKey:@"movies"];
     
@@ -57,7 +73,7 @@
     }
 }
 
-- (void) onBoxOfficeListLoadError :(AFHTTPRequestOperation *)op :(NSError *)err {
+- (void)onBoxOfficeListLoadError:(AFHTTPRequestOperation *)op :(NSError *)err {
     NSLog(@"%@", [err localizedDescription]);
     
     [MMProgressHUD dismiss];
@@ -67,16 +83,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // async load box office list
-    self.boxOfficeListLoaded = false;
-    self.rti = [[RottenTomatoesInterface alloc] init];
-    RequestCallback successCallback = ^(AFHTTPRequestOperation *op, id data) {
-        [self onBoxOfficeListLoaded:op :data];
-    };
-    ErrorCallback failureCallback = ^(AFHTTPRequestOperation *op, NSError *error) {
-        [self onBoxOfficeListLoadError:op :error];
-    };
-    [self.rti getBoxOfficeList:10 :successCallback :failureCallback];
+    [self loadBoxOfficeList];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -110,55 +117,26 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"BoxOfficeTableViewCell";
+    BoxOfficeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        //cell = [[BoxOfficeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"BoxOfficeTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
     }
     
-    cell.textLabel.text = [self.boxOfficeList objectAtIndex:indexPath.row][@"title"];
+    cell.titleLabel.text = [self.boxOfficeList objectAtIndex:indexPath.row][@"title"];
+    cell.descriptionLabel.text = [self.boxOfficeList objectAtIndex:indexPath.row][@"synopsis"];
+    
+    NSURL *imgUrl = [NSURL URLWithString:[self.boxOfficeList objectAtIndex:indexPath.row][@"posters"][@"thumbnail"]];
+    [cell.posterView setImageWithURL:imgUrl];
     
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 130;
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 /*
 #pragma mark - Table view delegate

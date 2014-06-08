@@ -23,6 +23,8 @@
 		1B8FD6031941900C000441DD /* TopMoviesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B8FD6011941900C000441DD /* TopMoviesViewController.xib */; };
 		1B8FD606194191BE000441DD /* RottenTomatoesInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8FD605194191BE000441DD /* RottenTomatoesInterface.m */; };
 		1B8FD6081941A15D000441DD /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B8FD6071941A15D000441DD /* config.plist */; };
+		1B95D0D419442F2B009E7F02 /* BoxOfficeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B95D0D319442F2B009E7F02 /* BoxOfficeTableViewCell.xib */; };
+		1B95D0D719442FFD009E7F02 /* BoxOfficeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B95D0D619442FFD009E7F02 /* BoxOfficeTableViewCell.m */; };
 		F918BBDAFF694DB6A77FE5CA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A81A7E8C5744669085143B /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +62,9 @@
 		1B8FD604194191BE000441DD /* RottenTomatoesInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RottenTomatoesInterface.h; sourceTree = "<group>"; };
 		1B8FD605194191BE000441DD /* RottenTomatoesInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RottenTomatoesInterface.m; sourceTree = "<group>"; };
 		1B8FD6071941A15D000441DD /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
+		1B95D0D319442F2B009E7F02 /* BoxOfficeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoxOfficeTableViewCell.xib; sourceTree = "<group>"; };
+		1B95D0D519442FFD009E7F02 /* BoxOfficeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxOfficeTableViewCell.h; sourceTree = "<group>"; };
+		1B95D0D619442FFD009E7F02 /* BoxOfficeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxOfficeTableViewCell.m; sourceTree = "<group>"; };
 		D31DFDF0E00B4E71B7A4E1E0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,6 +138,9 @@
 				1B8FD604194191BE000441DD /* RottenTomatoesInterface.h */,
 				1B8FD605194191BE000441DD /* RottenTomatoesInterface.m */,
 				1B8FD6071941A15D000441DD /* config.plist */,
+				1B95D0D319442F2B009E7F02 /* BoxOfficeTableViewCell.xib */,
+				1B95D0D519442FFD009E7F02 /* BoxOfficeTableViewCell.h */,
+				1B95D0D619442FFD009E7F02 /* BoxOfficeTableViewCell.m */,
 			);
 			path = RottenTomatoesClient;
 			sourceTree = "<group>";
@@ -244,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B8FD6081941A15D000441DD /* config.plist in Resources */,
+				1B95D0D419442F2B009E7F02 /* BoxOfficeTableViewCell.xib in Resources */,
 				1B8FD5DB19418872000441DD /* InfoPlist.strings in Resources */,
 				1B8FD6031941900C000441DD /* TopMoviesViewController.xib in Resources */,
 				1B8FD5E319418872000441DD /* Images.xcassets in Resources */,
@@ -301,6 +310,7 @@
 				1B8FD5E119418872000441DD /* AppDelegate.m in Sources */,
 				1B8FD606194191BE000441DD /* RottenTomatoesInterface.m in Sources */,
 				1B8FD5DD19418872000441DD /* main.m in Sources */,
+				1B95D0D719442FFD009E7F02 /* BoxOfficeTableViewCell.m in Sources */,
 				1B8FD6021941900C000441DD /* TopMoviesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
