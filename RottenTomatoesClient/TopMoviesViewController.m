@@ -41,8 +41,11 @@
 }
 
 - (void)loadBoxOfficeList {
+    // show progress dialog
+    [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleFade];
+    [MMProgressHUD showWithTitle:@"Loading" status:@"Getting Box Office List"];
+    
     // async load box office list
-    self.boxOfficeListLoaded = false;
     self.rti = [[RottenTomatoesInterface alloc] init];
     RequestCallback successCallback = ^(AFHTTPRequestOperation *op, id data) {
         [self onBoxOfficeListLoaded:op :data];
@@ -54,7 +57,6 @@
 }
 
 - (void)onBoxOfficeListLoaded:(AFHTTPRequestOperation *)op :(id)data {
-    self.boxOfficeListLoaded = true;
     self.boxOfficeList = [data objectForKey:@"movies"];
     
     void (^updateUI)(void) = ^{
@@ -62,6 +64,7 @@
         self.tableView.tableHeaderView = nil;
         
         [MMProgressHUD dismiss];
+        [self.refreshControl endRefreshing];
         [[self tableView] reloadData];
     };
     
@@ -78,24 +81,26 @@
     NSLog(@"%@", [err localizedDescription]);
     
     [MMProgressHUD dismiss];
+    [self.refreshControl endRefreshing];
     self.tableView.tableHeaderView = [self makeErrorBox:@"Network Error!"];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self loadBoxOfficeList];
     [self setTitle:@"Box Office Movies"];
+    
+    // load box office list
+    [self loadBoxOfficeList];
+    
+    // pull down to refresh feature
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(loadBoxOfficeList) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refreshControl;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:true];
-    
-    // show loading if box office list has not been loaded yet
-    if(!self.boxOfficeListLoaded){
-        [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleBalloon];
-        [MMProgressHUD showWithTitle:@"Loading" status:@"Getting Box Office List"];
-    }
 }
 
 - (void)didReceiveMemoryWarning {

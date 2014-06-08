@@ -15,6 +15,5 @@
 
 @property (nonatomic, retain) NSArray *boxOfficeList;
 @property (nonatomic) RottenTomatoesInterface *rti;
-@property (nonatomic) BOOL boxOfficeListLoaded;
 
 @end
