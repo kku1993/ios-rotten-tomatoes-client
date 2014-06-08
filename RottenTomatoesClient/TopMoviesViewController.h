@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RottenTomatoesInterface.h"
 
 @interface TopMoviesViewController : UITableViewController
+
+@property (nonatomic, retain) NSArray *boxOfficeList;
+@property (nonatomic) RottenTomatoesInterface *rti;
 
 @end

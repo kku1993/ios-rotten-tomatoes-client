@@ -25,24 +25,17 @@
     return self;
 }
 
-- (id)initWithCallbacks :(RequestCallback)successCB :(ErrorCallback)failureCB {
-    self = [self init];
-    self.successCallback = successCB;
-    self.failureCallback = failureCB;
-    return self;
-}
-
-- (void)httpGet :(NSString *)url {
+- (void)httpGet :(NSString *)url :(RequestCallback)successCB :(ErrorCallback)failureCB {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:url parameters:nil success:self.successCallback failure:self.failureCallback];
+    [manager GET:url parameters:nil success:successCB failure:failureCB];
 }
 
-- (void)getBoxOfficeList :(int)num {
+- (void)getBoxOfficeList :(int)num :(RequestCallback)successCB :(ErrorCallback)failureCB {
     NSString *boxOfficeUrl = self.boxOfficeUrl;
     boxOfficeUrl = [boxOfficeUrl stringByReplacingOccurrencesOfString:@"{num}" withString:[NSString stringWithFormat:@"%i", num]];
 
-    if(self.successCallback && self.failureCallback) {
-        [self httpGet:boxOfficeUrl];
+    if(successCB && failureCB) {
+        [self httpGet:boxOfficeUrl :successCB :failureCB];
     }
     else {
         [NSException raise:@"No callback provided" format:@"No callback provided"];

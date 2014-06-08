@@ -16,10 +16,7 @@ typedef void(^ErrorCallback)(AFHTTPRequestOperation *operation, NSError * error)
 
 @property (nonatomic) NSString *apiKey;
 @property (nonatomic) NSString *boxOfficeUrl;
-@property (nonatomic, copy) RequestCallback successCallback;
-@property (nonatomic, copy) ErrorCallback failureCallback;
 
-- (id)initWithCallbacks :(RequestCallback)successCB :(ErrorCallback)failureCB;
-- (void)getBoxOfficeList :(int)num;
+- (void)getBoxOfficeList :(int)num :(RequestCallback)successCB :(ErrorCallback)failureCB;
 
 @end

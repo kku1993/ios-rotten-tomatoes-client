@@ -10,12 +10,12 @@
 #import "RottenTomatoesInterface.h"
 
 @interface TopMoviesViewController ()
+
 @end
 
 @implementation TopMoviesViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+- (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
@@ -23,28 +23,61 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+- (UIView *) makeErrorBox:(NSString *)errMsg {
+    UIView *errorBox = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 20)];
+    UITextField *errorTextField = [[UITextField alloc] initWithFrame:errorBox.frame];
+    errorTextField.text = errMsg;
+    errorTextField.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    errorTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    errorTextField.textAlignment = NSTextAlignmentCenter;
+    errorTextField.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
+    errorTextField.textColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
+    [errorBox addSubview:errorTextField];
     
-    RottenTomatoesInterface *rti = [[RottenTomatoesInterface alloc] init];
-    rti.successCallback = ^(AFHTTPRequestOperation *operation, id data) {
-        NSLog(@"%@", data[@"movies"]);
-    };
-    rti.failureCallback = ^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@", [error localizedDescription]);
-    };
-    [rti getBoxOfficeList:10];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    return errorBox;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void) onBoxOfficeListLoaded :(AFHTTPRequestOperation *)op :(id)data {
+    //TODO: loading spinner
+    
+    self.boxOfficeList = [data objectForKey:@"movies"];
+    
+    // update table view
+    if([NSThread isMainThread]) {
+        // make sure error box is not showing
+        self.tableView.tableHeaderView = nil;
+        [[self tableView] reloadData];
+    }
+    else {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            // make sure error box is not showing
+            self.tableView.tableHeaderView = nil;
+            [[self tableView] reloadData];
+        });
+    }
+}
+
+- (void) onBoxOfficeListLoadError :(AFHTTPRequestOperation *)op :(NSError *)err {
+    NSLog(@"%@", [err localizedDescription]);
+    
+    self.tableView.tableHeaderView = [self makeErrorBox:@"Network Error!"];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    // async load box office list
+    self.rti = [[RottenTomatoesInterface alloc] init];
+    RequestCallback successCallback = ^(AFHTTPRequestOperation *op, id data) {
+        [self onBoxOfficeListLoaded: op :data];
+    };
+    ErrorCallback failureCallback = ^(AFHTTPRequestOperation *op, NSError *error) {
+        [self onBoxOfficeListLoadError:op :error];
+    };
+    [self.rti getBoxOfficeList:10 :successCallback :failureCallback];
+}
+
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -54,13 +87,13 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 5;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 3;
+    return [self.boxOfficeList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -71,7 +104,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    // Configure the cell...
+    cell.textLabel.text = [self.boxOfficeList objectAtIndex:indexPath.row];
     
     return cell;
 }
