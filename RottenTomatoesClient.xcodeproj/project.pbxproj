@@ -25,6 +25,8 @@
 		1B8FD6081941A15D000441DD /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B8FD6071941A15D000441DD /* config.plist */; };
 		1B95D0D419442F2B009E7F02 /* BoxOfficeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B95D0D319442F2B009E7F02 /* BoxOfficeTableViewCell.xib */; };
 		1B95D0D719442FFD009E7F02 /* BoxOfficeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B95D0D619442FFD009E7F02 /* BoxOfficeTableViewCell.m */; };
+		1B95D0DE19444AA5009E7F02 /* MovieDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B95D0DC19444AA5009E7F02 /* MovieDetailViewController.m */; };
+		1B95D0DF19444AA5009E7F02 /* MovieDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B95D0DD19444AA5009E7F02 /* MovieDetailViewController.xib */; };
 		F918BBDAFF694DB6A77FE5CA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A81A7E8C5744669085143B /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +67,9 @@
 		1B95D0D319442F2B009E7F02 /* BoxOfficeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoxOfficeTableViewCell.xib; sourceTree = "<group>"; };
 		1B95D0D519442FFD009E7F02 /* BoxOfficeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxOfficeTableViewCell.h; sourceTree = "<group>"; };
 		1B95D0D619442FFD009E7F02 /* BoxOfficeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxOfficeTableViewCell.m; sourceTree = "<group>"; };
+		1B95D0DB19444AA5009E7F02 /* MovieDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieDetailViewController.h; sourceTree = "<group>"; };
+		1B95D0DC19444AA5009E7F02 /* MovieDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetailViewController.m; sourceTree = "<group>"; };
+		1B95D0DD19444AA5009E7F02 /* MovieDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieDetailViewController.xib; sourceTree = "<group>"; };
 		D31DFDF0E00B4E71B7A4E1E0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,6 +146,9 @@
 				1B95D0D319442F2B009E7F02 /* BoxOfficeTableViewCell.xib */,
 				1B95D0D519442FFD009E7F02 /* BoxOfficeTableViewCell.h */,
 				1B95D0D619442FFD009E7F02 /* BoxOfficeTableViewCell.m */,
+				1B95D0DB19444AA5009E7F02 /* MovieDetailViewController.h */,
+				1B95D0DC19444AA5009E7F02 /* MovieDetailViewController.m */,
+				1B95D0DD19444AA5009E7F02 /* MovieDetailViewController.xib */,
 			);
 			path = RottenTomatoesClient;
 			sourceTree = "<group>";
@@ -251,6 +259,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B95D0DF19444AA5009E7F02 /* MovieDetailViewController.xib in Resources */,
 				1B8FD6081941A15D000441DD /* config.plist in Resources */,
 				1B95D0D419442F2B009E7F02 /* BoxOfficeTableViewCell.xib in Resources */,
 				1B8FD5DB19418872000441DD /* InfoPlist.strings in Resources */,
@@ -307,6 +316,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B95D0DE19444AA5009E7F02 /* MovieDetailViewController.m in Sources */,
 				1B8FD5E119418872000441DD /* AppDelegate.m in Sources */,
 				1B8FD606194191BE000441DD /* RottenTomatoesInterface.m in Sources */,
 				1B8FD5DD19418872000441DD /* main.m in Sources */,

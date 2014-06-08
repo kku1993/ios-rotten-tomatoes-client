@@ -10,6 +10,7 @@
 
 #import "BoxOfficeTableViewCell.h"
 #import "TopMoviesViewController.h"
+#import "MovieDetailViewController.h"
 
 @interface TopMoviesViewController ()
 
@@ -84,6 +85,7 @@
     [super viewDidLoad];
     
     [self loadBoxOfficeList];
+    [self setTitle:@"Box Office Movies"];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -136,6 +138,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 130;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // open movie detail view
+    id data = [self.boxOfficeList objectAtIndex:indexPath.row];
+    MovieDetailViewController *detailViewController = [[MovieDetailViewController alloc] initWithMovieData:@"MovieDetailViewController" bundle:nil movieData:data];
+    [detailViewController setTitle:data[@"title"]];
+    
+    [self.navigationController pushViewController:detailViewController animated:true];
 }
 
 /*
