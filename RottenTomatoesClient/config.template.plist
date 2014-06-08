@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>rt_top_dvd_url</key>
+	<string>http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?limit={num}&amp;country=us&amp;apikey={api_key}</string>
+	<key>rt_box_office_url</key>
+	<string>http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?limit={num}&amp;country=us&amp;apikey={api_key}</string>
+	<key>rt_api_key</key>
+	<string></string>
+</dict>
+</plist>
