@@ -21,6 +21,9 @@
         
         NSString *boxOfficeUrl = config[@"rt_box_office_url"];
         self.boxOfficeUrl = [boxOfficeUrl stringByReplacingOccurrencesOfString:@"{api_key}" withString:[NSString stringWithFormat:@"%@", self.apiKey]];
+        
+        NSString *topDVDUrl = config[@"rt_top_dvd_url"];
+        self.topDVDUrl = [topDVDUrl stringByReplacingOccurrencesOfString:@"{api_key}" withString:self.apiKey];
     }
     return self;
 }
@@ -36,6 +39,18 @@
 
     if(successCB && failureCB) {
         [self httpGet:boxOfficeUrl :successCB :failureCB];
+    }
+    else {
+        [NSException raise:@"No callback provided" format:@"No callback provided"];
+    }
+}
+
+- (void)getTopDVDList:(int)num :(RequestCallback)successCB :(ErrorCallback)failureCB {
+    NSString *topDVDUrl = self.topDVDUrl;
+    topDVDUrl = [topDVDUrl stringByReplacingOccurrencesOfString:@"{num}" withString:[NSString stringWithFormat:@"%i", num]];
+    
+    if(successCB && failureCB) {
+        [self httpGet:topDVDUrl :successCB :failureCB];
     }
     else {
         [NSException raise:@"No callback provided" format:@"No callback provided"];

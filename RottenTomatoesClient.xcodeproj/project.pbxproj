@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B0A8EE119450D790064D4D0 /* TopDVDTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0A8EDF19450D790064D4D0 /* TopDVDTableViewController.m */; };
+		1B0A8EE219450D790064D4D0 /* TopDVDTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B0A8EE019450D790064D4D0 /* TopDVDTableViewController.xib */; };
+		1B0A8EE6194513950064D4D0 /* ticket.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B0A8EE5194513950064D4D0 /* ticket.png */; };
+		1B0A8EE8194513B80064D4D0 /* disc.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B0A8EE7194513B80064D4D0 /* disc.png */; };
 		1B8FD5D119418872000441DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B8FD5D019418872000441DD /* Foundation.framework */; };
 		1B8FD5D319418872000441DD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B8FD5D219418872000441DD /* CoreGraphics.framework */; };
 		1B8FD5D519418872000441DD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B8FD5D419418872000441DD /* UIKit.framework */; };
@@ -42,6 +46,11 @@
 
 /* Begin PBXFileReference section */
 		08A81A7E8C5744669085143B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B0A8EDE19450D790064D4D0 /* TopDVDTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopDVDTableViewController.h; sourceTree = "<group>"; };
+		1B0A8EDF19450D790064D4D0 /* TopDVDTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopDVDTableViewController.m; sourceTree = "<group>"; };
+		1B0A8EE019450D790064D4D0 /* TopDVDTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopDVDTableViewController.xib; sourceTree = "<group>"; };
+		1B0A8EE5194513950064D4D0 /* ticket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ticket.png; path = ../../../Downloads/ticket/ticket.png; sourceTree = "<group>"; };
+		1B0A8EE7194513B80064D4D0 /* disc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = disc.png; path = ../../../Downloads/music_record/disc.png; sourceTree = "<group>"; };
 		1B8FD5CD19418872000441DD /* RottenTomatoesClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RottenTomatoesClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B8FD5D019418872000441DD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1B8FD5D219418872000441DD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -133,8 +142,13 @@
 		1B8FD5D619418872000441DD /* RottenTomatoesClient */ = {
 			isa = PBXGroup;
 			children = (
+				1B0A8EE7194513B80064D4D0 /* disc.png */,
+				1B0A8EE5194513950064D4D0 /* ticket.png */,
 				1B8FD5DF19418872000441DD /* AppDelegate.h */,
 				1B8FD5E019418872000441DD /* AppDelegate.m */,
+				1B0A8EDE19450D790064D4D0 /* TopDVDTableViewController.h */,
+				1B0A8EDF19450D790064D4D0 /* TopDVDTableViewController.m */,
+				1B0A8EE019450D790064D4D0 /* TopDVDTableViewController.xib */,
 				1B8FD5E219418872000441DD /* Images.xcassets */,
 				1B8FD5D719418872000441DD /* Supporting Files */,
 				1B8FD5FF1941900C000441DD /* TopMoviesViewController.h */,
@@ -259,12 +273,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B0A8EE8194513B80064D4D0 /* disc.png in Resources */,
 				1B95D0DF19444AA5009E7F02 /* MovieDetailViewController.xib in Resources */,
 				1B8FD6081941A15D000441DD /* config.plist in Resources */,
 				1B95D0D419442F2B009E7F02 /* BoxOfficeTableViewCell.xib in Resources */,
 				1B8FD5DB19418872000441DD /* InfoPlist.strings in Resources */,
 				1B8FD6031941900C000441DD /* TopMoviesViewController.xib in Resources */,
 				1B8FD5E319418872000441DD /* Images.xcassets in Resources */,
+				1B0A8EE6194513950064D4D0 /* ticket.png in Resources */,
+				1B0A8EE219450D790064D4D0 /* TopDVDTableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B95D0DE19444AA5009E7F02 /* MovieDetailViewController.m in Sources */,
+				1B0A8EE119450D790064D4D0 /* TopDVDTableViewController.m in Sources */,
 				1B8FD5E119418872000441DD /* AppDelegate.m in Sources */,
 				1B8FD606194191BE000441DD /* RottenTomatoesInterface.m in Sources */,
 				1B8FD5DD19418872000441DD /* main.m in Sources */,
