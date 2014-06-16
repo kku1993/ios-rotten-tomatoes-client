@@ -8,8 +8,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MovieDetailViewController">
             <connections>
                 <outlet property="movieDescriptionContainerView" destination="Wub-qn-lJu" id="X2Z-qJ-9M6"/>
+                <outlet property="movieDescriptionLabel" destination="sNH-4Y-X3h" id="oRQ-X7-Hbf"/>
                 <outlet property="movieDescriptionScrollView" destination="ekT-po-MrB" id="CTD-K5-xSl"/>
-                <outlet property="movieDescriptionTextView" destination="Nr2-lo-IyM" id="6Fn-Dc-h13"/>
                 <outlet property="movieDescriptionTitleLabel" destination="cL5-Vq-Z8x" id="DgO-gr-kkK"/>
                 <outlet property="moviePosterBackground" destination="plQ-6B-fUx" id="miD-al-OdW"/>
                 <outlet property="view" destination="1" id="3"/>
@@ -29,23 +29,23 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
                         <view alpha="0.75" contentMode="scaleToFill" id="Wub-qn-lJu">
-                            <rect key="frame" x="0.0" y="147" width="320" height="421"/>
+                            <rect key="frame" x="0.0" y="171" width="320" height="397"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cL5-Vq-Z8x">
-                                    <rect key="frame" x="15" y="0.0" width="285" height="49"/>
+                                    <rect key="frame" x="15" y="10" width="285" height="49"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" text="Movie Content..." selectable="NO" id="Nr2-lo-IyM">
-                                    <rect key="frame" x="15" y="47" width="285" height="374"/>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Content..." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sNH-4Y-X3h">
+                                    <rect key="frame" x="15" y="67" width="285" height="310"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                </textView>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </view>

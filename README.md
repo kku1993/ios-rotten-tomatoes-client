@@ -3,7 +3,7 @@ ios-rotten-tomatoes-client
 
 A simple iOS client for Rotten Tomatoes.
 
-Total Time Spent: 6 hours
+Total Time Spent: 8 hours
 
 Completed User Stories:
 
